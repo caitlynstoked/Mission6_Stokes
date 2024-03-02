@@ -1,0 +1,48 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model List<Mission6>
+
+<table class=" table table-success table-striped">
+    <thead class="fw-bold table-light text-center">
+        <tr>
+            <td>MovieID</td>
+            <td>CategoryID</td>
+            <td>Title</td>
+            <td>Year</td>
+            <td>Director</td>
+            <td>Rating</td>
+            <td>Edited</td>
+            <td>Lent To</td>
+            <td>Copied To Plex?</td>
+            <td>Notes</td>
+            <td>Edit</td>
+            <td>Delete</td>
+        </tr>
+
+    </thead>
+
+    @foreach (var x in Model)
+    {
+        <tbody class="table-group-divider">
+            <tr>
+                <td>@x.MovieID</td>
+                <td>@x.Category.CategoryName</td>
+                <td>@x.Title</td>
+                <td>@x.Year</td>
+                <td>@x.Director</td>
+                <td>@x.Rating</td>
+                <td>@x.Edited</td>
+                <td>@x.LentTo</td>
+                <td>@x.CopiedtoPlex</td>
+                <td>@x.Notes</td>
+
+                <td><a class="btn btn-info" asp-controller="Home" asp-action="Edit" asp-route-id="@entry.MovieID">Edit</a></td>
+                <td><a class="btn btn-danger" asp-controller="Home" asp-action="Delete" asp-route-id="@entry.MovieID">Delete</a></td>
+            </tr>
+
+        </tbody>
+    }
+</table>

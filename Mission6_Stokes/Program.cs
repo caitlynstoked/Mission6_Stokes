@@ -1,17 +1,16 @@
 using Mission6_Stokes.Models;
 using Microsoft.EntityFrameworkCore;
 
-using Microsoft.Extensions.Options;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-//builder.Services.AddDbContext<Mission6Context>(OptionsBuilderConfigurationExtensions =>
-//{
-    //options.UseSqlite(builder.Configuration["ConnectionStrings:DatingConnection"]);
-//});
+builder.Services.AddDbContext<MovieEntryFormContext>(options =>
+{
+    options.UseSqlite(builder.Configuration["ConnectionStrings:DatingConnection"]);
+});
+
 
 var app = builder.Build();
 
