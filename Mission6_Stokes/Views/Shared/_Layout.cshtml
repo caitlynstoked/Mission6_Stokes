@@ -23,10 +23,13 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Mission6">Add Movie</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="MovieEntryForm">Add Movie</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="GetToKnow">Get to Know Joel</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="MovieList">Look at our database</a>
                         </li>
                     </ul>
                 </div>
@@ -36,7 +39,7 @@
     <ul>
         <li>@Html.ActionLink("Home", "Index", "Home")</li>
         <li>@Html.ActionLink("Get to Know Joel", "GetToKnow", "Home")</li>
-        <li>@Html.ActionLink("Add Movie", "MovieDatabase", "Home")</li>
+        <li>@Html.ActionLink("Add Movie", "MovieEntryForm", "Home")</li>
     </ul>
 
     <div class="container">

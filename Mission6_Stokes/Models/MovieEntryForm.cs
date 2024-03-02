@@ -26,11 +26,14 @@ namespace Mission6_Stokes.Models
 
         public string? Director { get; set; }
 
-        [Required(ErrorMessage = "Please indicate whether edited or not.")]
+        [Required(ErrorMessage = "Please tell me if the movie is edited.")]
         public bool Edited { get; set; }
 
         public string? LentTo { get; set; }
         public string? Rating { get; set; }
+
+        [Required(ErrorMessage = "Please share if the movie is copied to Plex or not")]
+        public bool PlexCopy { get; set; }
 
         [MaxLength(25)]
         public string? Notes { get; set; }

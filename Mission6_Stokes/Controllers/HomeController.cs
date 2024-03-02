@@ -1,7 +1,7 @@
 using Mission6_Stokes.Models;
 using Microsoft.AspNetCore.Mvc;
-uisng Microsoft.EntityFrameworkCore;
-using System.Diagnostics;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace Mission6_Stokes.Controllers
 {
@@ -9,7 +9,7 @@ namespace Mission6_Stokes.Controllers
     {
         private MovieEntryFormContext _context;
 
-        public HomeController(MovieEntryFormContext  temp)
+        public HomeController(MovieEntryFormContext temp)
         {
             _context = temp;
         }
@@ -26,7 +26,7 @@ namespace Mission6_Stokes.Controllers
         [HttpGet]
         public IActionResult MovieEntryForm()
         {
-            ViewBag.Category = _context.Category
+            ViewBag.Category = _context.Categories
                 .OrderBy(x => x.CategoryId)
                 .ToList();
 
@@ -36,52 +36,61 @@ namespace Mission6_Stokes.Controllers
         [HttpPost]
         public IActionResult MovieEntryForm(MovieEntryForm response)
         {
-            _context.Applications.Add(response); //add record to the database
+            _context.Movies.Add(response); //add record to the db
             _context.SaveChanges();
 
             return View("Confirmation", response);
         }
-
-
-        [HttpPost]
-
-        public IActionResult Mission6(Class response)
+        public IActionResult MovieList()
         {
-            return View("Confirmation", response);
+            var movies =
+                _context.Movies
+                .Include(x => x.Category)
+                .OrderBy(x => x.MovieId)
+                .ToList();
+
+            return View(movies);
+
         }
 
         [HttpGet]
         public IActionResult Edit(int id)
         {
+            var recordToEdit = _context.Movies
+                .Single(x => x.MovieId == id); //single record shown
 
-            ViewBag.Categories = _repo.Category
-                .OrderBy(x => x.CategoryId)
+            //Contents of Categories Table
+            ViewBag.Categories = _context.Categories
+                .OrderBy(x => x.CategoryName)
                 .ToList();
 
-
-            return View("AddOrEdit", RecordToEdit);
+            return View("MovieEntryForm", recordToEdit);
         }
 
         [HttpPost]
         public IActionResult Edit(MovieEntryForm UpdatedInfo)
         {
-            _repo.Edit(UpdatedInfo);
-            return RedirectToAction("QTest");
+            _context.Update(UpdatedInfo);
+            _context.SaveChanges();
+
+            return RedirectToAction("MovieDatabase"); 
         }
         [HttpGet]
         public IActionResult Delete(int id)
         {
-            var recordToDelete = _context.Applications
+            var recordToDelete = _context.Movies
                 .Single(x=> x.MovieId == id);
+            ViewBag.Categories = _context.Categories
+            .OrderBy(x => x.CategoryName)
+            .ToList();
 
             return View(recordToDelete);
         }
 
         [HttpPost]
-        
-        public IActionResult Delete(MovieEntryForm application)
+        public IActionResult Delete(MovieEntryForm Delete)
         {
-            _context.Applications.Remove(application);
+            _context.Remove(Delete);
             _context.SaveChanges();
 
             return RedirectToAction("MovieList");
