@@ -3,13 +3,13 @@
 *@
 @{
 }
-@model List<MovieEntryForm>
+@model List<Mission6>
 
 <table class=" table table-success table-striped">
     <thead class="fw-bold table-light text-center">
         <tr>
-            <td>MovieId</td>
-            <td>CategoryId</td>
+            <td>MovieID</td>
+            <td>CategoryID</td>
             <td>Title</td>
             <td>Year</td>
             <td>Director</td>
@@ -28,7 +28,7 @@
     {
         <tbody class="table-group-divider">
             <tr>
-                <td>@x.MovieId</td>
+                <td>@x.MovieID</td>
                 <td>@x.Category.CategoryName</td>
                 <td>@x.Title</td>
                 <td>@x.Year</td>
@@ -36,11 +36,11 @@
                 <td>@x.Rating</td>
                 <td>@x.Edited</td>
                 <td>@x.LentTo</td>
-                <td>@x.PlexCopy</td>
+                <td>@x.CopiedtoPlex</td>
                 <td>@x.Notes</td>
 
-                <td><a class="btn btn-info" asp-controller="Home" asp-action="Edit" asp-route-id="@x.MovieId">Edit</a></td>
-                <td><a class="btn btn-danger" asp-controller="Home" asp-action="Delete" asp-route-id="@x.MovieId">Delete</a></td>
+                <td><a class="btn btn-info" asp-controller="Home" asp-action="Edit" asp-route-id="@entry.MovieID">Edit</a></td>
+                <td><a class="btn btn-danger" asp-controller="Home" asp-action="Delete" asp-route-id="@entry.MovieID">Delete</a></td>
             </tr>
 
         </tbody>
