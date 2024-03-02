@@ -5,11 +5,20 @@
 }
 @model Mission6_Stokes.Models.Class
 
-<h1>Dating Application</h1>
+
+<h1>Movie Database</h1>
+
 <form method="post">
 
-    <label asp-for="Category">Category</label>
-    <input asp-for="Category"/>
+    <label asp-for="CategoryId">Category</label>
+    <select asp-for="CategoryId">
+        <option value="">Select a Category</option>
+        @foreach (Category c in ViewBag.Category)
+        {
+            <option value="@c.CategoryId">@c.CategoryName</option>
+        }
+
+    </select>
 
     <label asp-for="Title">Title</label>
     <input asp-for="Title"/>
@@ -26,8 +35,8 @@
         <option value="True">Yes</option>
         <option value="False">No</option>
     </select>
-
-    <label asp-for="Rating">Rating</label>
+    <br />
+    <label asp-for="Rating">Rating:</label><br />
     <select asp-for="Rating">
         <option value="G">G</option>
         <option value="PG">PG</option>
