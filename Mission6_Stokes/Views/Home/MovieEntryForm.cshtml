@@ -1,14 +1,12 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    ViewData["Title"] = "Movie Entry Form";
 }
-@model Mission6_Stokes.Models.Class
-
+@model MovieEntryForm
 
 <h1>Movie Database</h1>
 
 <form method="post">
+    <input type="hidden" asp-for="MovieId" />
 
     <label asp-for="CategoryId">Category</label>
     <select asp-for="CategoryId">
@@ -21,20 +19,32 @@
     </select>
 
     <label asp-for="Title">Title</label>
-    <input asp-for="Title"/>
+    <input asp-for="Title" />
 
     <label asp-for="Year">Year</label>
-    <input asp-for="Year"/>
+    <input asp-for="Year" />
 
     <label asp-for="Director">Director</label>
-    <input asp-for="Director"/>
+    <input asp-for="Director" />
     <br />
+
+    <label asp-for="LentTo">Lent To:</label>
+    <input asp-for="LentTo" />
 
     <label asp-for="Edited">Is this movie edited?</label>
     <select asp-for="Edited">
         <option value="True">Yes</option>
         <option value="False">No</option>
     </select>
+    <br />
+
+    <label asp-for="PlexCopy">Copied to Plex:</label><br />
+    <select asp-for="PlexCopy">
+        <option value=""></option>
+        <option value="True">Yes</option>
+        <option value="False">No</option>
+    </select>
+
     <br />
     <label asp-for="Rating">Rating:</label><br />
     <select asp-for="Rating">
@@ -45,7 +55,7 @@
     </select>
 
     <label asp-for="Notes">Notes</label>
-    <input asp-for="Notes"/>
+    <input asp-for="Notes" />
 
     <button type="submit" onsubmit="Submit Application"> Submit</button>
 

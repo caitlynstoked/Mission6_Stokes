@@ -5,8 +5,8 @@ namespace Mission6_Stokes.Models
 {
     public class MovieEntryFormContext : DbContext
     {
-        public MovieEntryFormContext(DbContextOptions<MovieEntryFormContext> options) : base (options)
-        { 
+        public MovieEntryFormContext(DbContextOptions<MovieEntryFormContext> options) : base(options)
+        {
         }
         //conn movie class to Movies
         public DbSet<MovieEntryForm> Movies { get; set; }
